@@ -19,4 +19,6 @@ class SignUpForm(forms.ModelForm):
 
     def clean_full_name(self):
         full_name = self.cleaned_data.get('full_name')
+        if(any(char.isdigit() for char in full_name)):
+        	raise forms.ValidationError("Name cannot contain numbers")
         return full_name
